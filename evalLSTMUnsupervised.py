@@ -22,8 +22,8 @@ def plot(actual, prediction):
         plt.legend()
         plt.show()
 
-n_hours = 2
-n_features = 5
+timesteps = 2
+params = 5
 samples = 500000
 
 # load dataset
@@ -48,14 +48,14 @@ labels = np.delete(labels, 0, axis =1)
 labels = np.delete(labels, 0, axis =1)
 labels = scaler.fit_transform(labels)
 
-labels = labels[:(samples/n_hours)]
+labels = labels[:(samples/timesteps)]
 
 scaled = scaled[:samples]
-reframed = np.reshape(scaled,(samples, n_features))
-values = np.reshape(reframed,((samples/n_hours), n_hours,-1))
+reframed = np.reshape(scaled,(samples, params))
+values = np.reshape(reframed,((samples/timesteps), timesteps,-1))
 
-size = ((len(values))/n_hours)
-sizeL = ((len(labels))/n_hours)
+size = ((len(values))/timesteps)
+sizeL = ((len(labels))/timesteps)
 
 test_X = values[:size]
 test_y = labels[:sizeL]
