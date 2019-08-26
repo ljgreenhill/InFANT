@@ -30,10 +30,6 @@ tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram
 dataset = read_csv('merged.csv', header=0, usecols = ['time', 'src', 'dst', 'length', 'protocol', 'people'])
 values = dataset.values
 
-# integer encode direction
-encoder = LabelEncoder()
-values[:,5] = encoder.fit_transform(values[:,5])
-
 values = values.astype('float32')
 
 # normalize features
